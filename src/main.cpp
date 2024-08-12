@@ -7,14 +7,14 @@ constexpr uint32_t winHeight = 1080;
 
 int main()
 {
-    auto window = sf::RenderWindow{{winWidth, winHeight}, "CMake SFML Project", sf::Style::Default};
+    auto window = sf::RenderWindow{{winWidth, winHeight}, "SFML Breakout", sf::Style::Default};
     window.setFramerateLimit(144);
 
     Ball grayBall(BallType::Gray);
     Ball blueBall(BallType::Blue);
 
-    grayBall.setPosition(100,20);
-    blueBall.setPosition(20,100);
+    grayBall.setPosition(100, 20);
+    blueBall.setPosition(20, 100);
 
     while (window.isOpen())
     {
@@ -31,7 +31,7 @@ int main()
                 {
                 case sf::Keyboard::Key::Escape:
                     window.close();
-                
+
                 default:
                     break;
                 }

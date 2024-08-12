@@ -1,11 +1,13 @@
 #pragma once
 
-enum class BallType {
+enum class BallType
+{
     Gray,
     Blue
 };
 
-enum class BrickType {
+enum class BrickType
+{
     Gray,
     Blue,
     Green,
@@ -14,7 +16,8 @@ enum class BrickType {
     Purple
 };
 
-enum class PaddleType {
+enum class PaddleType
+{
     Blue,
     Red
 };

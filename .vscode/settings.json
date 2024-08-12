@@ -69,5 +69,7 @@
         "span": "cpp",
         "cinttypes": "cpp",
         "variant": "cpp"
-    }
+    },
+    "git.autofetch": true,
+    "editor.formatOnSave": true,
 }
