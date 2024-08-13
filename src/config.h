@@ -1,5 +1,8 @@
 #pragma once
 
+constexpr uint32_t winWidth = 1600;
+constexpr uint32_t winHeight = 900;
+
 enum class BallType
 {
     Gray,

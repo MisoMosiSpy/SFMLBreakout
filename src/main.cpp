@@ -1,20 +1,20 @@
 #include <SFML/Graphics.hpp>
+#include "config.h"
 #include "ball.h"
 #include <iostream>
 
-constexpr uint32_t winWidth = 1980;
-constexpr uint32_t winHeight = 1080;
-
 int main()
 {
-    auto window = sf::RenderWindow{{winWidth, winHeight}, "SFML Breakout", sf::Style::Default};
+    auto window = sf::RenderWindow{{winWidth, winHeight}, "SFML Breakout", sf::Style::Fullscreen};
     window.setFramerateLimit(144);
 
     Ball grayBall(BallType::Gray);
     Ball blueBall(BallType::Blue);
 
     grayBall.setPosition(100, 20);
-    blueBall.setPosition(20, 100);
+    grayBall.setSpeed(sf::Vector2f{1.0f, 1.0f});
+    blueBall.setPosition(100, 20);
+    blueBall.setSpeed(sf::Vector2f{0.5f, 0.5f});
 
     while (window.isOpen())
     {
@@ -38,6 +38,8 @@ int main()
             }
         }
 
+        grayBall.update();
+        blueBall.update();
         window.clear();
         window.draw(blueBall);
         window.draw(grayBall);

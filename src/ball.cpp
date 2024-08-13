@@ -21,3 +21,24 @@ Ball::Ball(BallType t) : Sprite()
     }
     setTexture(tex);
 }
+
+void Ball::update(void)
+{
+    sf::Vector2f pos = getPosition();
+    pos += speed;
+
+    if (pos.x < 0 || pos.x + getGlobalBounds().width > winWidth)
+    {
+        speed.x *= -1.0f;
+    }
+    if (pos.y < 0 || pos.y + getGlobalBounds().height > winHeight)
+    {
+        speed.y *= -1.0f;
+    }
+    setPosition(pos);
+}
+
+void Ball::setSpeed(sf::Vector2f speed)
+{
+    this->speed = speed;
+}
