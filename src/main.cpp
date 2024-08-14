@@ -1,10 +1,12 @@
 #include <SFML/Graphics.hpp>
-#include "config.h"
-#include "ball.h"
 #include <iostream>
 
-int main()
-{
+#include "ball.h"
+#include "border.h"
+#include "config.h"
+
+int main() {
+
     auto window = sf::RenderWindow{{winWidth, winHeight}, "SFML Breakout", sf::Style::Fullscreen};
     window.setFramerateLimit(144);
 
@@ -16,24 +18,22 @@ int main()
     blueBall.setPosition(100, 20);
     blueBall.setSpeed(sf::Vector2f{0.5f, 0.5f});
 
-    while (window.isOpen())
-    {
-        for (auto event = sf::Event{}; window.pollEvent(event);)
-        {
-            if (event.type == sf::Event::Closed)
-            {
+    Border border(borderSize, sf::Vector2f{winWidth, winHeight}, true, false, true, true);
+
+    while (window.isOpen()) {
+
+        for (auto event = sf::Event{}; window.pollEvent(event);) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
 
-            if (event.type == sf::Event::KeyPressed)
-            {
-                switch (event.key.code)
-                {
-                case sf::Keyboard::Key::Escape:
-                    window.close();
+            if (event.type == sf::Event::KeyPressed) {
+                switch (event.key.code) {
+                    case sf::Keyboard::Key::Escape:
+                        window.close();
 
-                default:
-                    break;
+                    default:
+                        break;
                 }
             }
         }
@@ -41,6 +41,7 @@ int main()
         grayBall.update();
         blueBall.update();
         window.clear();
+        window.draw(border);
         window.draw(blueBall);
         window.draw(grayBall);
         window.display();
