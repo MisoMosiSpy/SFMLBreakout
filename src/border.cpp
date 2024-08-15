@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2024 MisoMosiSpy
+// SPDX-License-Identifier: MIT
+
 #include "border.h"
 
 Border::Border(float borderSize, sf::Vector2f windowSize, bool top, bool bottom, bool left,

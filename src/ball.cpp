@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2024 MisoMosiSpy
+// SPDX-License-Identifier: MIT
+
 #include "ball.h"
 
 #include <iostream>

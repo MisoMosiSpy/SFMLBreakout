@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2024 MisoMosiSpy
+# SPDX-License-Identifier: MIT
+
 cmake_minimum_required(VERSION 3.5)
 project(SFMLBreakout LANGUAGES CXX)
 

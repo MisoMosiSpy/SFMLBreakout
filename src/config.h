@@ -1,3 +1,7 @@
+
+// SPDX-FileCopyrightText: 2024 MisoMosiSpy
+// SPDX-License-Identifier: MIT
+
 #pragma once
 
 constexpr uint32_t winWidth = 1600;
