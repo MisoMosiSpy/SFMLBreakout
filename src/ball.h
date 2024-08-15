@@ -8,6 +8,7 @@ public:
 
     Ball(BallType t);
     void update(void);
+    void checkCollision(sf::Sprite &other);
 
     void setSpeed(sf::Vector2f speed) { this->speed = speed; }
 

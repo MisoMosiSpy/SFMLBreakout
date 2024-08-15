@@ -72,4 +72,7 @@
     },
     "git.autofetch": true,
     "editor.formatOnSave": true,
+    "cSpell.words": [
+        "SFML"
+    ],
 }

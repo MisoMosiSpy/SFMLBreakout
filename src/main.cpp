@@ -4,6 +4,7 @@
 #include "ball.h"
 #include "border.h"
 #include "config.h"
+#include "paddle.h"
 
 int main() {
 
@@ -11,12 +12,10 @@ int main() {
     window.setFramerateLimit(144);
 
     Ball grayBall(BallType::Gray);
-    Ball blueBall(BallType::Blue);
+    Paddle player(PaddleType::Red);
 
     grayBall.setPosition(100, 20);
     grayBall.setSpeed(sf::Vector2f{1.0f, 1.0f});
-    blueBall.setPosition(100, 20);
-    blueBall.setSpeed(sf::Vector2f{0.5f, 0.5f});
 
     Border border(borderSize, sf::Vector2f{winWidth, winHeight}, true, false, true, true);
 
@@ -39,11 +38,12 @@ int main() {
         }
 
         grayBall.update();
-        blueBall.update();
+        player.update();
+        grayBall.checkCollision(player);
         window.clear();
         window.draw(border);
-        window.draw(blueBall);
         window.draw(grayBall);
+        window.draw(player);
         window.display();
     }
 }

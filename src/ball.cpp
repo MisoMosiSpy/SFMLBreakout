@@ -25,8 +25,24 @@ void Ball::update(void) {
     if (pos.x <= borderSize || (pos.x + getGlobalBounds().width + borderSize) > winWidth) {
         speed.x *= -1.0f;
     }
-    if (pos.y <= borderSize || (pos.y + getGlobalBounds().height + borderSize) > winHeight) {
+
+    if (pos.y <= borderSize) {
         speed.y *= -1.0f;
     }
+
+    if ((pos.y + getGlobalBounds().height) > winHeight) {
+        std::exit(-1);
+    }
     setPosition(pos);
+}
+
+void Ball::checkCollision(sf::Sprite& other) {
+
+    sf::FloatRect rectSelf{getGlobalBounds().getPosition(), getGlobalBounds().getSize()};
+    sf::FloatRect rectOther{other.getGlobalBounds().getPosition(),
+                            other.getGlobalBounds().getSize()};
+
+    if (rectSelf.intersects(rectOther)) {
+        speed.y *= -1;
+    }
 }
