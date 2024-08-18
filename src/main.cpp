@@ -17,8 +17,8 @@ int main() {
     Ball grayBall(BallType::Gray);
     Paddle player(PaddleType::Red);
 
-    grayBall.setPosition(100, 20);
-    grayBall.setSpeed(sf::Vector2f{1.0f, 1.0f});
+    grayBall.setPosition(winWidth / 2,
+                         player.getGlobalBounds().top - grayBall.getGlobalBounds().height);
 
     Border border(borderSize, sf::Vector2f{winWidth, winHeight}, true, false, true, true);
 
@@ -33,7 +33,10 @@ int main() {
                 switch (event.key.code) {
                     case sf::Keyboard::Key::Escape:
                         window.close();
-
+                        break;
+                    case sf::Keyboard::Key::Space:
+                        grayBall.setSpeed(sf::Vector2f{1.0f, -1.0f});
+                        break;
                     default:
                         break;
                 }
