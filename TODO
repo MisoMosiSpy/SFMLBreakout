@@ -1,0 +1,5 @@
+1. When the ball is attached to the paddle (at the start of new game/new ball),
+   it should move with paddle (currently it remains at center of the screen).
+   
+2. Fix collision from side. use commit it 2ddac193b5fa67545dbe6d22432bd93839edd51a
+   to test this easily. (Collision with yellow brick shows this behavior)
