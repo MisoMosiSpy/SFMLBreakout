@@ -19,6 +19,7 @@ add_executable(SFMLBreakout src/main.cpp
                     src/ball.cpp
                     src/border.cpp
                     src/paddle.cpp
+                    src/brick.cpp
 )
 target_link_libraries(SFMLBreakout PRIVATE sfml-graphics)
 target_compile_features(SFMLBreakout PRIVATE cxx_std_17)
