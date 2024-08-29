@@ -43,7 +43,7 @@ int main() {
                         window.close();
                         break;
                     case sf::Keyboard::Key::Space:
-                        grayBall.setSpeed(sf::Vector2f{1.0f, -1.0f});
+                        grayBall.setSpeed(sf::Vector2f{-2.0f, -2.0f});
                         break;
                     default:
                         break;

@@ -19,5 +19,5 @@ private:
 
     PaddleType paddleType;
     sf::Texture tex;
-    float speed = 1;
+    float speed = 3;
 };
