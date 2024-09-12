@@ -3,11 +3,11 @@
 // SPDX-License-Identifier: MIT
 
 #pragma once
-#include <SFML/Graphics.hpp>
 
 #include "config.h"
+#include "spriteEx.h"
 
-class Brick : public sf::Sprite {
+class Brick : public SpriteEx {
 public:
 
     Brick(BrickType t, sf::Vector2f pos);

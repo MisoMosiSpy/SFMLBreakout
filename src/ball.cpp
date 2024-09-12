@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-Ball::Ball(BallType t) : Sprite() {
+Ball::Ball(BallType t) : SpriteEx() {
     std::string fileName;
     if (t == BallType::Gray) {
         fileName = "resources/ballGrey.png";
@@ -56,7 +56,7 @@ void Ball::checkWindowCollision() {
     setPosition(pos);
 }
 
-void Ball::checkCollision(sf::Sprite& other) {
+void Ball::checkCollision(const SpriteEx& other) {
 
     sf::FloatRect ballPos{getGlobalBounds().getPosition(), getGlobalBounds().getSize()};
     sf::FloatRect otherPos{other.getGlobalBounds().getPosition(),
@@ -70,16 +70,16 @@ void Ball::checkCollision(sf::Sprite& other) {
 
         // Calculate horizontal overlap based on the direction of movement
         if (m_speed.x > 0) {
-            overlapX = (ballPos.left + ballPos.width) - otherPos.left;
+            overlapX = getRight() - other.getLeft();
         } else {
-            overlapX = (otherPos.left + otherPos.width) - ballPos.left;
+            overlapX = other.getRight() - getLeft();
         }
 
         // Calculate Vertical overlap based on the direction of movement
         if (m_speed.y > 0) {
-            overlapY = (ballPos.top + ballPos.height) - otherPos.top;
+            overlapY = getBottom() - other.getTop();
         } else {
-            overlapY = (otherPos.top + otherPos.height) - ballPos.top;
+            overlapY = other.getBottom() - getTop();
         }
 
         sf::Vector2f pos = getPosition();
@@ -90,16 +90,14 @@ void Ball::checkCollision(sf::Sprite& other) {
 
             // Set ball postion (top) flush to the edge of the collided object in the
             // direction of the movement
-            pos.y = (m_speed.y > 0) ? (otherPos.top + otherPos.height)
-                                    : (otherPos.top - ballPos.height);
+            pos.y = (m_speed.y > 0) ? other.getBottom() : (other.getTop() - getHeight());
         } else {
 
             m_speed.x *= -1;
 
             // Set ball postion (left) flush to the edge of the collided object in the
             // direction of the movement
-            pos.x = (m_speed.x > 0) ? (otherPos.left + otherPos.width)
-                                    : (otherPos.left - ballPos.width);
+            pos.x = (m_speed.x > 0) ? other.getRight() : (other.getLeft() - getWidth());
         }
 
         setPosition(pos);

@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-Paddle::Paddle(PaddleType t) : Sprite() {
+Paddle::Paddle(PaddleType t) : SpriteEx() {
     m_paddleType = t;
 
     std::string fileName;
@@ -22,8 +22,7 @@ Paddle::Paddle(PaddleType t) : Sprite() {
         std::exit(-1);
     }
     setTexture(m_texture);
-    setPosition(g_winWidth / 2.0f - m_texture.getSize().x / 2.0f,
-                g_winHeight - m_texture.getSize().y * 2.0f);
+    setPosition(g_winWidth / 2 - getWidth() / 2, g_winHeight - (getHeight() * 2));
 }
 
 void Paddle::update() {
@@ -38,9 +37,13 @@ void Paddle::update() {
     }
 
     sf::Vector2f newPos = currentPos + movement;
+
+    // Check left side collision
     if (newPos.x < g_borderSize) newPos.x = g_borderSize;
-    if (newPos.x > g_winWidth - g_borderSize - m_texture.getSize().x)
-        newPos.x = static_cast<float>(g_winWidth - g_borderSize - m_texture.getSize().x);
+
+    // Check right side collision
+    if (newPos.x + getWidth() > (g_winWidth - g_borderSize))
+        newPos.x = static_cast<float>((g_winWidth - g_borderSize) - getWidth());
 
     setPosition(newPos);
 }

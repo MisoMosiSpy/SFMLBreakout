@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-Brick::Brick(BrickType t, sf::Vector2f pos) {
+Brick::Brick(BrickType t, sf::Vector2f pos) : SpriteEx() {
     std::string fileName;
     switch (t) {
         case BrickType::Gray:

@@ -19,8 +19,8 @@ int main() {
     Ball grayBall(BallType::Gray);
     Paddle player(PaddleType::Red);
 
-    grayBall.setPosition(g_winWidth / 2,
-                         player.getGlobalBounds().top - grayBall.getGlobalBounds().height);
+    grayBall.setPosition((g_winWidth / 2) - (grayBall.getWidth() / 2),
+                         player.getTop() - grayBall.getHeight());
 
     Border border(g_borderSize, sf::Vector2f{g_winWidth, g_winHeight}, true, false, true, true);
 

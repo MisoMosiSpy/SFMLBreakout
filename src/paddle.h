@@ -3,11 +3,10 @@
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include "config.h"
+#include "spriteEx.h"
 
-class Paddle : public sf::Sprite {
+class Paddle : public SpriteEx {
 public:
 
     Paddle(PaddleType t);
