@@ -16,11 +16,11 @@ public:
     void checkWindowCollision();
     void checkCollision(sf::Sprite &other);
 
-    void setSpeed(sf::Vector2f speed) { this->speed = speed; }
+    void setSpeed(sf::Vector2f speed) { this->m_speed = speed; }
 
 private:
 
-    BallType ballType;
-    sf::Texture tex;
-    sf::Vector2f speed;
+    BallType m_ballType;
+    sf::Texture m_texture;
+    sf::Vector2f m_speed;
 };

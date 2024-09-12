@@ -13,11 +13,11 @@ public:
     Paddle(PaddleType t);
     void update();
 
-    void setSpeed(float s) { speed = s; }
+    void setSpeed(float s) { m_speed = s; }
 
 private:
 
-    PaddleType paddleType;
-    sf::Texture tex;
-    float speed = 3;
+    PaddleType m_paddleType;
+    sf::Texture m_texture;
+    float m_speed = 3;
 };

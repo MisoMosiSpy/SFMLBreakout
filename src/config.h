@@ -4,9 +4,9 @@
 
 #pragma once
 
-constexpr uint32_t winWidth = 1600;
-constexpr uint32_t winHeight = 900;
-constexpr uint64_t borderSize = 10;
+constexpr int g_winWidth = 1600;
+constexpr int g_winHeight = 900;
+constexpr int g_borderSize = 10;
 
 enum class BallType { Gray, Blue };
 

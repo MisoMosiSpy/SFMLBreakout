@@ -21,8 +21,8 @@ private:
         return (size.x == 0 || size.y == 0) ? false : true;
     }
 
-    sf::RectangleShape topBorder;
-    sf::RectangleShape bottomBorder;
-    sf::RectangleShape leftBorder;
-    sf::RectangleShape rightBorder;
+    sf::RectangleShape m_topBorder;
+    sf::RectangleShape m_bottomBorder;
+    sf::RectangleShape m_leftBorder;
+    sf::RectangleShape m_rightBorder;
 };

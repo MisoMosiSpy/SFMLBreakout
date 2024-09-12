@@ -13,16 +13,16 @@ Ball::Ball(BallType t) : Sprite() {
         fileName = "resources/ballBlue.png";
     }
 
-    if (!tex.loadFromFile(fileName)) {
+    if (!m_texture.loadFromFile(fileName)) {
         std::cerr << "Unable to load texture " << fileName << std::endl;
         std::cerr << "Quitting..." << std::endl;
         std::exit(-1);
     }
-    setTexture(tex);
+    setTexture(m_texture);
 }
 
 void Ball::update(void) {
-    setPosition(getPosition() + speed);
+    setPosition(getPosition() + m_speed);
 
     // Keep the ball inside window (and border)
     checkWindowCollision();
@@ -33,21 +33,22 @@ void Ball::checkWindowCollision() {
     sf::Vector2f pos = getPosition();
 
     // Check collision with top and bottom
-    if (pos.x <= borderSize || (pos.x + getGlobalBounds().width + borderSize) > winWidth) {
-        speed.x *= -1.0f;
+    if (pos.x <= g_borderSize || (pos.x + getGlobalBounds().width + g_borderSize) > g_winWidth) {
+        m_speed.x *= -1.0f;
         // Set ball postion (left) flush to the edge in the direction of the movement
-        pos.x = (speed.x >= 0.0) ? borderSize : (winWidth - borderSize - getGlobalBounds().width);
+        pos.x = (m_speed.x >= 0.0) ? g_borderSize
+                                   : (g_winWidth - g_borderSize - getGlobalBounds().width);
     }
 
     // Check collision with top edge
-    if (pos.y <= borderSize) {
-        speed.y *= -1.0f;
+    if (pos.y <= g_borderSize) {
+        m_speed.y *= -1.0f;
         // Set ball postion (top) flush to the edge in the direction of the movement
-        pos.y = borderSize;
+        pos.y = g_borderSize;
     }
 
     // Check collision with bottom, it means we lost life
-    if ((pos.y + getGlobalBounds().height) > winHeight) {
+    if ((pos.y + getGlobalBounds().height) > g_winHeight) {
         // TODO: handle lives.
         std::exit(-1);
     }
@@ -68,14 +69,14 @@ void Ball::checkCollision(sf::Sprite& other) {
         float overlapY = 0.0f;
 
         // Calculate horizontal overlap based on the direction of movement
-        if (speed.x > 0) {
+        if (m_speed.x > 0) {
             overlapX = (ballPos.left + ballPos.width) - otherPos.left;
         } else {
             overlapX = (otherPos.left + otherPos.width) - ballPos.left;
         }
 
         // Calculate Vertical overlap based on the direction of movement
-        if (speed.y > 0) {
+        if (m_speed.y > 0) {
             overlapY = (ballPos.top + ballPos.height) - otherPos.top;
         } else {
             overlapY = (otherPos.top + otherPos.height) - ballPos.top;
@@ -85,20 +86,20 @@ void Ball::checkCollision(sf::Sprite& other) {
         // Check which overlap is smaller, we will take that as overlap direction
         if (overlapX > overlapY) {
 
-            speed.y *= -1;
+            m_speed.y *= -1;
 
             // Set ball postion (top) flush to the edge of the collided object in the
             // direction of the movement
-            pos.y =
-                (speed.y > 0) ? (otherPos.top + otherPos.height) : (otherPos.top - ballPos.height);
+            pos.y = (m_speed.y > 0) ? (otherPos.top + otherPos.height)
+                                    : (otherPos.top - ballPos.height);
         } else {
 
-            speed.x *= -1;
+            m_speed.x *= -1;
 
             // Set ball postion (left) flush to the edge of the collided object in the
             // direction of the movement
-            pos.x =
-                (speed.x > 0) ? (otherPos.left + otherPos.width) : (otherPos.left - ballPos.width);
+            pos.x = (m_speed.x > 0) ? (otherPos.left + otherPos.width)
+                                    : (otherPos.left - ballPos.width);
         }
 
         setPosition(pos);

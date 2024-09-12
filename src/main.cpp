@@ -12,16 +12,17 @@
 
 int main() {
 
-    auto window = sf::RenderWindow{{winWidth, winHeight}, "SFML Breakout", sf::Style::Fullscreen};
+    auto window =
+        sf::RenderWindow{{g_winWidth, g_winHeight}, "SFML Breakout", sf::Style::Fullscreen};
     window.setFramerateLimit(144);
 
     Ball grayBall(BallType::Gray);
     Paddle player(PaddleType::Red);
 
-    grayBall.setPosition(winWidth / 2,
+    grayBall.setPosition(g_winWidth / 2,
                          player.getGlobalBounds().top - grayBall.getGlobalBounds().height);
 
-    Border border(borderSize, sf::Vector2f{winWidth, winHeight}, true, false, true, true);
+    Border border(g_borderSize, sf::Vector2f{g_winWidth, g_winHeight}, true, false, true, true);
 
     Brick testBrickGray = Brick(BrickType::Gray, sf::Vector2f(50, 100));
     Brick testBrickBlue = Brick(BrickType::Blue, sf::Vector2f(100, 200));

@@ -36,11 +36,11 @@ Brick::Brick(BrickType t, sf::Vector2f pos) {
             break;
     }
 
-    if (!tex.loadFromFile(fileName)) {
+    if (!m_texture.loadFromFile(fileName)) {
         std::cerr << "Unable to load texture " << fileName << std::endl;
         std::cerr << "Quitting..." << std::endl;
         std::exit(-1);
     }
-    setTexture(tex);
+    setTexture(m_texture);
     setPosition(pos);
 }
