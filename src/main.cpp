@@ -16,11 +16,8 @@ int main() {
         sf::RenderWindow{{g_winWidth, g_winHeight}, "SFML Breakout", sf::Style::Fullscreen};
     window.setFramerateLimit(144);
 
-    Ball grayBall(BallType::Gray);
-    Paddle player(PaddleType::Red);
-
-    grayBall.setPosition((g_winWidth / 2) - (grayBall.getWidth() / 2),
-                         player.getTop() - grayBall.getHeight());
+    Ball ball(BallType::Gray);
+    Paddle paddle(PaddleType::Red);
 
     Border border(g_borderSize, sf::Vector2f{g_winWidth, g_winHeight}, true, false, true, true);
 
@@ -44,7 +41,9 @@ int main() {
                         window.close();
                         break;
                     case sf::Keyboard::Key::Space:
-                        grayBall.setSpeed(sf::Vector2f{-2.0f, -2.0f});
+                        if (!ball.isMoving()) {
+                            ball.setSpeed(sf::Vector2f{-2.0f, -2.0f});
+                        }
                         break;
                     default:
                         break;
@@ -52,20 +51,27 @@ int main() {
             }
         }
 
-        grayBall.update();
-        player.update();
-        grayBall.checkCollision(player);
-        grayBall.checkCollision(testBrickGray);
-        grayBall.checkCollision(testBrickBlue);
-        grayBall.checkCollision(testBrickGreen);
-        grayBall.checkCollision(testBrickYellow);
-        grayBall.checkCollision(testBrickRed);
-        grayBall.checkCollision(testBrickPurple);
+        ball.update();
+        paddle.update();
+
+        if (!ball.isMoving()) {
+            sf::Vector2f playerMidTop = paddle.getMidTop();
+            ball.setPosition(playerMidTop.x - (ball.getWidth() / 2),
+                             playerMidTop.y - ball.getHeight());
+        }
+
+        ball.checkCollision(paddle);
+        ball.checkCollision(testBrickGray);
+        ball.checkCollision(testBrickBlue);
+        ball.checkCollision(testBrickGreen);
+        ball.checkCollision(testBrickYellow);
+        ball.checkCollision(testBrickRed);
+        ball.checkCollision(testBrickPurple);
 
         window.clear();
         window.draw(border);
-        window.draw(grayBall);
-        window.draw(player);
+        window.draw(ball);
+        window.draw(paddle);
         window.draw(testBrickGray);
         window.draw(testBrickBlue);
         window.draw(testBrickGreen);

@@ -49,8 +49,13 @@ void Ball::checkWindowCollision() {
 
     // Check collision with bottom, it means we lost life
     if ((pos.y + getGlobalBounds().height) > g_winHeight) {
-        // TODO: handle lives.
-        std::exit(-1);
+        m_lives--;
+        if (m_lives > 0) {
+            reset();
+        } else {
+            // TODO: handle lives.
+            std::exit(-1);
+        }
     }
 
     setPosition(pos);
