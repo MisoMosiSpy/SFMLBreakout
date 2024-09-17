@@ -16,7 +16,7 @@ public:
 
 private:
 
-    PaddleType m_paddleType;
-    sf::Texture m_texture;
-    float m_speed = 3;
+    PaddleType m_paddleType{};
+    sf::Texture m_texture{};
+    float m_speed{g_playerSpeed};
 };

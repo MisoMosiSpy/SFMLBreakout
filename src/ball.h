@@ -26,8 +26,8 @@ public:
 
 private:
 
-    BallType m_ballType;
-    sf::Texture m_texture;
-    sf::Vector2f m_speed;
-    int m_lives{4};
+    BallType m_ballType{};
+    sf::Texture m_texture{};
+    sf::Vector2f m_speed{};
+    int m_lives{g_playerLives};
 };

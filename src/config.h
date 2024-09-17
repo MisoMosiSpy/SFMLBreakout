@@ -4,9 +4,14 @@
 
 #pragma once
 
+// Window settings
 constexpr int g_winWidth = 1600;
 constexpr int g_winHeight = 900;
 constexpr int g_borderSize = 10;
+
+// Game play settings
+constexpr int g_playerSpeed = 3;
+constexpr int g_playerLives = 4;
 
 enum class BallType { Gray, Blue };
 

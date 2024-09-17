@@ -14,6 +14,6 @@ public:
 
 private:
 
-    sf::Vector2f m_pos;
-    sf::Texture m_texture;
+    sf::Vector2f m_pos{};
+    sf::Texture m_texture{};
 };
