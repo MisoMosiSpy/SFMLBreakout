@@ -8,6 +8,7 @@
 #include "border.h"
 #include "brick.h"
 #include "config.h"
+#include "grid.h"
 #include "paddle.h"
 
 int main() {
@@ -16,21 +17,11 @@ int main() {
         sf::RenderWindow{{g_winWidth, g_winHeight}, "SFML Breakout", sf::Style::Fullscreen};
     window.setFramerateLimit(144);
 
+    // Create game objects
+    Grid grid{};
     Ball ball(BallType::Gray);
     Paddle paddle(PaddleType::Red);
-
     Border border(g_borderSize, sf::Vector2f{g_winWidth, g_winHeight}, true, false, true, true);
-
-    std::vector<Brick*> bricks;
-
-    // We construct the objects directly in the vector, so that they are destroyed
-    // When removed from the vector.
-    bricks.push_back(new Brick{BrickType::Gray, sf::Vector2f(50, 100)});
-    bricks.push_back(new Brick{BrickType::Blue, sf::Vector2f(100, 200)});
-    bricks.push_back(new Brick{BrickType::Green, sf::Vector2f(150, 300)});
-    bricks.push_back(new Brick{BrickType::Yellow, sf::Vector2f(200, 400)});
-    bricks.push_back(new Brick{BrickType::Red, sf::Vector2f(250, 500)});
-    bricks.push_back(new Brick{BrickType::Purple, sf::Vector2f(300, 600)});
 
     while (window.isOpen()) {
 
@@ -55,6 +46,8 @@ int main() {
             }
         }
 
+        // Update game state
+
         ball.update();
         paddle.update();
 
@@ -64,27 +57,18 @@ int main() {
                              playerMidTop.y - ball.getHeight());
         }
 
+        // Check collisions
         ball.checkCollision(paddle);
+        grid.checkCollision(ball);
 
-        for (auto brick : bricks) {
-            if (brick->getActive()) {
-                brick->setActive(!ball.checkCollision(*brick));
-            }
-        }
-
+        // Drawing
         window.clear();
+
         window.draw(border);
         window.draw(ball);
         window.draw(paddle);
-
-        for (auto brick : bricks) {
-            if (brick->getActive()) window.draw(*brick);
-        }
+        grid.draw(window);
 
         window.display();
-    }
-
-    for (auto brick : bricks) {
-        delete brick;
     }
 }
