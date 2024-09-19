@@ -61,7 +61,7 @@ void Ball::checkWindowCollision() {
     setPosition(pos);
 }
 
-void Ball::checkCollision(const SpriteEx& other) {
+bool Ball::checkCollision(const SpriteEx& other) {
 
     sf::FloatRect ballPos{getGlobalBounds().getPosition(), getGlobalBounds().getSize()};
     sf::FloatRect otherPos{other.getGlobalBounds().getPosition(),
@@ -106,5 +106,9 @@ void Ball::checkCollision(const SpriteEx& other) {
         }
 
         setPosition(pos);
+
+        return true;
     }
+
+    return false;
 }

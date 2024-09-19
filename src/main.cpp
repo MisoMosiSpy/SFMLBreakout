@@ -21,12 +21,16 @@ int main() {
 
     Border border(g_borderSize, sf::Vector2f{g_winWidth, g_winHeight}, true, false, true, true);
 
-    Brick testBrickGray = Brick(BrickType::Gray, sf::Vector2f(50, 100));
-    Brick testBrickBlue = Brick(BrickType::Blue, sf::Vector2f(100, 200));
-    Brick testBrickGreen = Brick(BrickType::Green, sf::Vector2f(150, 300));
-    Brick testBrickYellow = Brick(BrickType::Yellow, sf::Vector2f(200, 400));
-    Brick testBrickRed = Brick(BrickType::Red, sf::Vector2f(250, 500));
-    Brick testBrickPurple = Brick(BrickType::Purple, sf::Vector2f(300, 600));
+    std::vector<Brick*> bricks;
+
+    // We construct the objects directly in the vector, so that they are destroyed
+    // When removed from the vector.
+    bricks.push_back(new Brick{BrickType::Gray, sf::Vector2f(50, 100)});
+    bricks.push_back(new Brick{BrickType::Blue, sf::Vector2f(100, 200)});
+    bricks.push_back(new Brick{BrickType::Green, sf::Vector2f(150, 300)});
+    bricks.push_back(new Brick{BrickType::Yellow, sf::Vector2f(200, 400)});
+    bricks.push_back(new Brick{BrickType::Red, sf::Vector2f(250, 500)});
+    bricks.push_back(new Brick{BrickType::Purple, sf::Vector2f(300, 600)});
 
     while (window.isOpen()) {
 
@@ -61,24 +65,26 @@ int main() {
         }
 
         ball.checkCollision(paddle);
-        ball.checkCollision(testBrickGray);
-        ball.checkCollision(testBrickBlue);
-        ball.checkCollision(testBrickGreen);
-        ball.checkCollision(testBrickYellow);
-        ball.checkCollision(testBrickRed);
-        ball.checkCollision(testBrickPurple);
+
+        for (auto brick : bricks) {
+            if (brick->getActive()) {
+                brick->setActive(!ball.checkCollision(*brick));
+            }
+        }
 
         window.clear();
         window.draw(border);
         window.draw(ball);
         window.draw(paddle);
-        window.draw(testBrickGray);
-        window.draw(testBrickBlue);
-        window.draw(testBrickGreen);
-        window.draw(testBrickYellow);
-        window.draw(testBrickRed);
-        window.draw(testBrickPurple);
+
+        for (auto brick : bricks) {
+            if (brick->getActive()) window.draw(*brick);
+        }
 
         window.display();
+    }
+
+    for (auto brick : bricks) {
+        delete brick;
     }
 }

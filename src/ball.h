@@ -16,7 +16,7 @@ public:
 
     void checkWindowCollision();
 
-    void checkCollision(const SpriteEx &other);
+    bool checkCollision(const SpriteEx &other);
 
     void setSpeed(sf::Vector2f speed) { this->m_speed = speed; }
 
