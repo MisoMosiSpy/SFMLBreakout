@@ -7,6 +7,15 @@
 #include <iostream>
 
 Brick::Brick(BrickType t, sf::Vector2f pos, bool isActive) : SpriteEx() {
+
+    getTexture(t);
+    setTexture(m_texture);
+    setPosition(pos);
+    m_isActive = isActive;
+    m_level = static_cast<int>(t);
+}
+
+void Brick::getTexture(BrickType t) {
     std::string fileName;
     switch (t) {
         case BrickType::Gray:
@@ -41,8 +50,4 @@ Brick::Brick(BrickType t, sf::Vector2f pos, bool isActive) : SpriteEx() {
         std::cerr << "Quitting..." << std::endl;
         std::exit(-1);
     }
-
-    setTexture(m_texture);
-    setPosition(pos);
-    m_isActive = isActive;
 }

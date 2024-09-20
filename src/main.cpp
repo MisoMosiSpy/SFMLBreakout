@@ -13,8 +13,7 @@
 
 int main() {
 
-    auto window =
-        sf::RenderWindow{{g_winWidth, g_winHeight}, "SFML Breakout", sf::Style::Fullscreen};
+    auto window = sf::RenderWindow{{g_winWidth, g_winHeight}, "SFML Breakout", sf::Style::Default};
     window.setFramerateLimit(144);
 
     // Create game objects

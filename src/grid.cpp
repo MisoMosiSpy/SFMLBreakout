@@ -11,7 +11,7 @@ Grid::Grid() {
 
     Brick tempBrick{BrickType::Gray, sf::Vector2f(0, 0)};
 
-    float padding = 80;
+    float padding = g_padding;
     float width = tempBrick.getWidth() + padding;
     float height = tempBrick.getHeight() + padding;
 
@@ -49,7 +49,9 @@ void Grid::draw(sf::RenderWindow& window) {
 void Grid::checkCollision(Ball& ball) {
     for (auto brick : m_bricks) {
         if (brick->isActive()) {
-            brick->setActive(!ball.checkCollision(*brick));
+            if (ball.checkCollision(*brick)) {
+                brick->decrementLevel();
+            }
         }
     }
 }

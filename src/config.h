@@ -6,9 +6,10 @@
 #include <array>
 
 // Window settings
-constexpr int g_winWidth = 1600;
-constexpr int g_winHeight = 900;
+constexpr int g_winWidth = 1600 / 2;
+constexpr int g_winHeight = 900 / 2;
 constexpr int g_borderSize = 10;
+constexpr int g_padding = 40;
 
 // Game play settings
 constexpr int g_playerSpeed = 300;
