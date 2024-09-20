@@ -13,7 +13,10 @@ public:
     ~Grid();
 
     void draw(sf::RenderWindow& window);
+
     void checkCollision(Ball& ball);
+
+    bool isGameOver() const;
 
 private:
 

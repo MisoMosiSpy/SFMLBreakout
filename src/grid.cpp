@@ -19,14 +19,10 @@ Grid::Grid() {
     int rows = static_cast<int>(((g_winHeight / 2 - g_borderSize * 2) / height));
 
     sf::Vector2f start{};
-
     start.x = padding / 2 + (g_winWidth - cols * width) / 2;
     start.y = padding / 2 + (g_winHeight / 2 - rows * height) / 2;
 
-    std::cout << "Grid: " << rows << "x" << cols << std::endl;
-    std::cout << "Offset: " << start.x << "," << start.y << std::endl;
     int t = 0;
-
     for (int x = 0; x < cols; x++) {
         sf::Vector2f pos{0, 0};
         pos.x = start.x + width * x;
@@ -46,12 +42,21 @@ Grid::~Grid() {
 
 void Grid::draw(sf::RenderWindow& window) {
     for (auto brick : m_bricks) {
-        window.draw(*brick);
+        if (brick->isActive()) window.draw(*brick);
     }
 }
 
 void Grid::checkCollision(Ball& ball) {
     for (auto brick : m_bricks) {
-        ball.checkCollision(*brick);
+        if (brick->isActive()) {
+            brick->setActive(!ball.checkCollision(*brick));
+        }
     }
+}
+
+bool Grid::isGameOver() const {
+
+    auto count =
+        std::count_if(m_bricks.begin(), m_bricks.end(), [](Brick* b) { return b->isActive(); });
+    return (count == 0);
 }

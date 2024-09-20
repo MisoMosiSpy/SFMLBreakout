@@ -60,6 +60,10 @@ int main() {
         // Check collisions
         ball.checkCollision(paddle);
         grid.checkCollision(ball);
+        if (grid.isGameOver()) {
+            std::cout << "You Won!!!" << std::endl;
+            exit(0);
+        }
 
         // Drawing
         window.clear();

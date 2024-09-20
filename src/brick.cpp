@@ -41,6 +41,7 @@ Brick::Brick(BrickType t, sf::Vector2f pos, bool isActive) : SpriteEx() {
         std::cerr << "Quitting..." << std::endl;
         std::exit(-1);
     }
+
     setTexture(m_texture);
     setPosition(pos);
     m_isActive = isActive;

@@ -16,6 +16,8 @@ public:
 
     bool getActive() const { return m_isActive; }
 
+    bool isActive() const { return m_isActive == true; }
+
 private:
 
     sf::Vector2f m_pos{};
