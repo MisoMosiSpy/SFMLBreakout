@@ -25,15 +25,15 @@ Paddle::Paddle(PaddleType t) : SpriteEx() {
     setPosition(g_winWidth / 2 - getWidth() / 2, g_winHeight - (getHeight() * 2));
 }
 
-void Paddle::update() {
+void Paddle::update(float dt) {
 
     sf::Vector2f currentPos = getPosition();
     sf::Vector2f movement{0, 0};
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        movement.x = -m_speed;
+        movement.x = -m_speed * dt;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        movement.x = m_speed;
+        movement.x = m_speed * dt;
     }
 
     sf::Vector2f newPos = currentPos + movement;

@@ -12,7 +12,7 @@ public:
 
     Ball(BallType t);
 
-    void update();
+    void update(float dt);
 
     void checkWindowCollision();
 

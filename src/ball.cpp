@@ -21,8 +21,8 @@ Ball::Ball(BallType t) : SpriteEx() {
     setTexture(m_texture);
 }
 
-void Ball::update(void) {
-    setPosition(getPosition() + m_speed);
+void Ball::update(float dt) {
+    setPosition(getPosition() + (m_speed * dt));
 
     // Keep the ball inside window (and border)
     checkWindowCollision();

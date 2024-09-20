@@ -10,7 +10,7 @@ class Paddle : public SpriteEx {
 public:
 
     Paddle(PaddleType t);
-    void update();
+    void update(float dt);
 
     void setSpeed(float s) { m_speed = s; }
 

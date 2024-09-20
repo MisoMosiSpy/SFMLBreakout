@@ -23,7 +23,11 @@ int main() {
     Paddle paddle(PaddleType::Red);
     Border border(g_borderSize, sf::Vector2f{g_winWidth, g_winHeight}, true, false, true, true);
 
+    sf::Clock clock;
+
     while (window.isOpen()) {
+
+        float dt = clock.restart().asSeconds();
 
         for (auto event = sf::Event{}; window.pollEvent(event);) {
             if (event.type == sf::Event::Closed) {
@@ -37,7 +41,7 @@ int main() {
                         break;
                     case sf::Keyboard::Key::Space:
                         if (!ball.isMoving()) {
-                            ball.setSpeed(sf::Vector2f{-2.0f, -2.0f});
+                            ball.setSpeed(sf::Vector2f{-g_ballSpeed, -g_ballSpeed});
                         }
                         break;
                     default:
@@ -48,8 +52,8 @@ int main() {
 
         // Update game state
 
-        ball.update();
-        paddle.update();
+        ball.update(dt);
+        paddle.update(dt);
 
         if (!ball.isMoving()) {
             sf::Vector2f playerMidTop = paddle.getMidTop();
