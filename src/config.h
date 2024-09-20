@@ -18,13 +18,27 @@ constexpr int g_ballSpeed = 250;
 
 enum class BallType { Gray, Blue };
 
-enum class BrickType { Green, Yellow, Red, Purple, Blue, Gray, maxTypes };
+enum class BrickType { Gray = -1, None, Green, Yellow, Red, Purple, Blue, maxTypes };
 
 enum class PaddleType { Blue, Red };
 
 inline BrickType intToBrickType(int type) {
-    std::array lookup = {BrickType::Green,  BrickType::Yellow, BrickType::Red,
-                         BrickType::Purple, BrickType::Blue,   BrickType::Gray};
+    switch (type) {
+        case -1:
+            return BrickType::Gray;
+        case 0:
+            return BrickType::None;
+        case 1:
+            return BrickType::Green;
+        case 2:
+            return BrickType::Yellow;
+        case 3:
+            return BrickType::Red;
+        case 4:
+            return BrickType::Purple;
+        case 5:
+            return BrickType::Blue;
+    }
 
-    return lookup[type];
+    return BrickType::None;
 }

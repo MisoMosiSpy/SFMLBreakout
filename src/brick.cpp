@@ -6,12 +6,11 @@
 
 #include <iostream>
 
-Brick::Brick(BrickType t, sf::Vector2f pos, bool isActive) : SpriteEx() {
+Brick::Brick(BrickType t, sf::Vector2f pos) : SpriteEx() {
 
     getTexture(t);
     setTexture(m_texture);
     setPosition(pos);
-    m_isActive = isActive;
     m_level = static_cast<int>(t);
 }
 
