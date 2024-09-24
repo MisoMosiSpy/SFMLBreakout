@@ -39,10 +39,13 @@ int main() {
                         window.close();
                         break;
                     case sf::Keyboard::Key::Space:
-                        if (!ball.isMoving()) {
-                            ball.setSpeed(sf::Vector2f{-g_ballSpeed, -g_ballSpeed});
-                        }
+                        if (!ball.isMoving()) ball.setMoving(true);
                         break;
+                    case sf::Keyboard::Key::LBracket:
+                        if (!ball.isMoving()) ball.changeAngle(-g_angleStep);
+                        break;
+                    case sf::Keyboard::Key::RBracket:
+                        if (!ball.isMoving()) ball.changeAngle(g_angleStep);
                     default:
                         break;
                 }
@@ -51,18 +54,12 @@ int main() {
 
         // Update game state
 
-        ball.update(dt);
         paddle.update(dt);
+        ball.update(dt, paddle.getMidTop());
 
-        if (!ball.isMoving()) {
-            sf::Vector2f playerMidTop = paddle.getMidTop();
-            ball.setPosition(playerMidTop.x - (ball.getWidth() / 2),
-                             playerMidTop.y - ball.getHeight());
-        }
-
-        // Check collisions
         ball.checkCollision(paddle);
         grid.checkCollision(ball);
+
         if (grid.isGameOver()) {
             std::cout << "You Won!!!" << std::endl;
             exit(0);
@@ -72,8 +69,9 @@ int main() {
         window.clear();
 
         window.draw(border);
-        window.draw(ball);
         window.draw(paddle);
+
+        ball.draw(window);
         grid.draw(window);
 
         window.display();

@@ -1,5 +1,7 @@
-1. When the ball is attached to the paddle (at the start of new game/new ball),
-   it should move with paddle (currently it remains at center of the screen).
-   
-2. Fix collision from side. use commit it 2ddac193b5fa67545dbe6d22432bd93839edd51a
-   to test this easily. (Collision with yellow brick shows this behavior)
+1. Refactor ball direction indicator, currently update and draw the ball and the indicator
+   separately and we need to pass the window handle. THis is not good design, we can integrate
+   everything in ball update and ball draw itself. 
+
+2. Collisions results in change of speed (at least direction), however, we don't update the
+   angle. It is OK for now as angle is used only when the ball is not moving, but it is better
+   to keep it in sync. This needs to be thought through.

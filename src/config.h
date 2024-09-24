@@ -15,6 +15,8 @@ constexpr int g_padding = 40;
 constexpr int g_playerSpeed = 300;
 constexpr int g_playerLives = 4;
 constexpr int g_ballSpeed = 250;
+constexpr int g_defaultAngle = -30;
+constexpr int g_angleStep = 2;
 
 enum class BallType { Gray, Blue };
 

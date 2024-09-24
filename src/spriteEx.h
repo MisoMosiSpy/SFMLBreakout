@@ -21,4 +21,8 @@ public:
     float getRight() const { return (getLeft() + getWidth()); }
 
     sf::Vector2f getMidTop() const { return sf::Vector2f{getLeft() + (getWidth() / 2), getTop()}; }
+
+    sf::Vector2f getCenter() const {
+        return sf::Vector2f{getLeft() + (getWidth() / 2), getTop() + (getHeight() / 2)};
+    }
 };
