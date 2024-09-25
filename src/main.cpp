@@ -57,7 +57,24 @@ int main() {
         paddle.update(dt);
         ball.update(dt, paddle.getMidTop());
 
-        ball.checkCollision(paddle);
+        // Check for collision with the paddle, dynamically adjust reflection angle based on
+        // where the ball hits relative to the center of the paddle. The farther it is from
+        // center the shallower will be the reflection angle. This way player can control
+        // the direction of the ball with the paddle.
+        if (ball.checkCollision(paddle)) {
+            sf::Vector2f speed = ball.getSpeed();
+            int angle = -90;  // If it hits exactly at the center, ball goes straight  up.
+            int delta = static_cast<int>(abs(ball.getCenter().x - paddle.getCenter().x));
+
+            // Ball is moving towards right, the range of the angle is from 0 to -180
+            if (speed.x > 0) {
+                angle += delta;
+            } else {
+                angle -= delta;
+            }
+            ball.setAngle(angle);
+        }
+
         grid.checkCollision(ball);
 
         if (grid.isGameOver()) {

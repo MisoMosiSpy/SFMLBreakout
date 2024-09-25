@@ -35,6 +35,8 @@ public:
 
     void setAngle(int angle);
 
+    sf::Vector2f getSpeed() { return m_speed; }
+
 private:
 
     void checkWindowCollision();
