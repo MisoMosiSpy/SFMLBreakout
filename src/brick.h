@@ -12,7 +12,7 @@ public:
 
     Brick(BrickType t, sf::Vector2f pos);
 
-    void Brick::getTexture(BrickType t);
+    void getTexture(BrickType t);
 
     bool isActive() const { return (m_level >= 1 || m_level == -1); }
 

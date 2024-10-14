@@ -1,11 +1,6 @@
 // SPDX-FileCopyrightText: 2024 MisoMosiSpy
 // SPDX-License-Identifier: MIT
-
-#pragma once
-
 #include "grid.h"
-
-#include <iostream>
 
 Grid::Grid() {
 

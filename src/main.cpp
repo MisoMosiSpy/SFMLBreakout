@@ -6,7 +6,6 @@
 
 #include "ball.h"
 #include "border.h"
-#include "brick.h"
 #include "config.h"
 #include "grid.h"
 #include "paddle.h"

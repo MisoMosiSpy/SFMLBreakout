@@ -5,8 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "config.h"
-
 class Border : public sf::Drawable {
 
 public:

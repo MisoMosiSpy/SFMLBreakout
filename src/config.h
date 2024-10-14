@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: MIT
 
 #pragma once
-#include <array>
 
 // Window settings
 constexpr int g_winWidth = 1600 / 2;
